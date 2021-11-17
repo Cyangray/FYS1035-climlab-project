@@ -54,6 +54,7 @@ class prediction:
         
     def run_model(self,stab_years=1, ice_lat_decrease = None, year_decrease = None, static = False):
         self.icelat = np.empty_like(self.DA_array)
+        self.mean_temp = np.empty_like(self.DA_array)
         if ice_lat_decrease or year_decrease:
             
             if ice_lat_decrease:
@@ -80,6 +81,7 @@ class prediction:
                 self.climlab_model.subprocess['LW'].A = self.params['A'] + self.DA_array[0] - DA
                 self.climlab_model.integrate_years(stab_years, verbose=False)
                 self.icelat[i] = np.max(self.climlab_model.icelat)
+                self.mean_temp[i] = self.climlab_model.global_mean_temperature()
                 try:
                     if self.icelat[i] >= ice_lat_decrease:
                         decrease = True
@@ -98,6 +100,7 @@ class prediction:
                 self.climlab_model.subprocess['LW'].A = self.params['A'] + self.DA_array[0] - DA
                 self.climlab_model.integrate_years(stab_years, verbose=False)
                 self.icelat[i] = np.max(self.climlab_model.icelat)
+                self.mean_temp[i] = self.climlab_model.global_mean_temperature()
                 print(i)
             
             

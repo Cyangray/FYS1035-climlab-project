@@ -23,7 +23,7 @@ years_lims = [2021,2150]
 #initiate today model, and make it as a starting point for all other simulations
 climlab_today = make_model(param)
 
-year_list = [2036, 2038]#, 2040, 2042, 2044, 2046, 2048, 2050, 2052, 2054]
+year_list = [2036, 2038, 2040, 2042, 2043, 2044, 2046, 2048, 2050, 2052, 2054]
 
 for year_thresh in year_list:
     
@@ -34,7 +34,7 @@ for year_thresh in year_list:
     for pred in predictions: pred.initiate_model(param, starting_climlab_model=climlab_today)
     
     #run the models
-    for pred in predictions: pred.run_model(year_decrease = year_thresh, static = False) #ice_lat_decrease = 80)
+    for pred in predictions: pred.run_model(year_decrease = year_thresh, static = True) #ice_lat_decrease = 80)
     
     #save the dataset models for plotting in other scripts
-    np.save('predicts_vippepunkt_%s.npy'%year_thresh,predictions)
+    np.save('predicts_vippepunkt_s_%s.npy'%year_thresh,predictions)
