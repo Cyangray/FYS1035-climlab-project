@@ -17,7 +17,7 @@ from climlib import *
 
 year_list = [2036, 2043, 2044, 2050]
 
-cmap = matplotlib.cm.get_cmap('magma')
+cmap = matplotlib.cm.get_cmap('Dark2')
 alpha = 0.7
 fig, axs = plt.subplots(nrows = 1, ncols = 3, figsize=(15,7))
 plt.suptitle('Hva skjer hvis vi bestemmer oss for å reversere utslipp på et visst år?')
@@ -58,7 +58,7 @@ axs[2].plot(predmodel.years[0], predmodel.icelat[0], 'ko')
 
 axs[0].annotate(text = 'Dagens nivå', xy=(predmodel.years[0], predmodel.co2e_array[0]), xytext=(predmodel.years[0]+4, predmodel.co2e_array[0]-3))
 axs[1].annotate(text = 'Dagens nivå', xy=(predmodel.co2e_array[0], predmodel.icelat[0]), xytext=(predmodel.co2e_array[0]+7, predmodel.icelat[0]-0.2))
-axs[2].annotate(text = 'Dagens nivå', xy=(predmodel.years[0], predmodel.icelat[0]), xytext=(predmodel.years[0]+4, predmodel.icelat[0]-3))
+axs[2].annotate(text = 'Dagens nivå', xy=(predmodel.years[0], predmodel.icelat[0]), xytext=(predmodel.years[0]+4, predmodel.icelat[0]-0.2))
 axs[1].set_ylim(70,91)
 #axs[0].set_ylim(420,630)
 axs[0].set_xlabel('År')

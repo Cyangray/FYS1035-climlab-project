@@ -31,13 +31,13 @@ for i, year_thresh in enumerate(reversed(year_list)):
     
     #plot icelats and co2e levels
     predmodel = predictions[3]
-    axs[0].plot(predmodel.years, predmodel.co2e_array, color = cmap(i/len(year_list)), linestyle = '-', label = 'Revers i %s'%year_thresh, alpha = alpha)
-    axs[1].plot(predmodel.co2e_array, predmodel.icelat, color = cmap(i/len(year_list)), linestyle = '-', label = 'Revers i %s'%year_thresh, alpha = alpha)
-    axs[2].plot(predmodel.years, predmodel.icelat, color = cmap(i/len(year_list)), linestyle = '-', label = 'Revers i %s'%year_thresh, alpha = alpha)
+    axs[0].plot(predmodel.years, predmodel.co2e_array, color = cmap(i/len(year_list)), linestyle = '-', label = 'Stopp i %s'%year_thresh, alpha = alpha)
+    axs[1].plot(predmodel.co2e_array, predmodel.icelat, color = cmap(i/len(year_list)), linestyle = '-', label = 'Stopp i %s'%year_thresh, alpha = alpha)
+    axs[2].plot(predmodel.years, predmodel.icelat, color = cmap(i/len(year_list)), linestyle = '-', label = 'Stopp i %s'%year_thresh, alpha = alpha)
     if year_thresh == 2044:
-        axs[0].plot(predmodel.years, predmodel.co2e_array, color = cmap(i/len(year_list)), linestyle = '--', label = 'Revers i %s'%year_thresh, alpha = alpha)
-        axs[1].plot(predmodel.co2e_array, predmodel.icelat, color = cmap(i/len(year_list)), linestyle = '--', label = 'Revers i %s'%year_thresh, alpha = alpha)
-        axs[2].plot(predmodel.years, predmodel.icelat, color = cmap(i/len(year_list)), linestyle = '--', label = 'Revers i %s'%year_thresh, alpha = alpha)
+        axs[0].plot(predmodel.years, predmodel.co2e_array, color = cmap(i/len(year_list)), linestyle = '--', label = 'Stopp i %s'%year_thresh, alpha = alpha)
+        axs[1].plot(predmodel.co2e_array, predmodel.icelat, color = cmap(i/len(year_list)), linestyle = '--', label = 'Stopp i %s'%year_thresh, alpha = alpha)
+        axs[2].plot(predmodel.years, predmodel.icelat, color = cmap(i/len(year_list)), linestyle = '--', label = 'Stopp i %s'%year_thresh, alpha = alpha)
     
     max_co2_i = np.argmax(predmodel.co2e_array)
     axs[1].plot(predmodel.co2e_array[max_co2_i], predmodel.icelat[max_co2_i], 'ko')
@@ -57,7 +57,7 @@ axs[2].plot(predmodel.years[0], predmodel.icelat[0], 'ko')
 
 axs[0].annotate(text = 'Dagens nivå', xy=(predmodel.years[0], predmodel.co2e_array[0]), xytext=(predmodel.years[0]+4, predmodel.co2e_array[0]-3))
 axs[1].annotate(text = 'Dagens nivå', xy=(predmodel.co2e_array[0], predmodel.icelat[0]), xytext=(predmodel.co2e_array[0]+7, predmodel.icelat[0]-0.2))
-axs[2].annotate(text = 'Dagens nivå', xy=(predmodel.years[0], predmodel.icelat[0]), xytext=(predmodel.years[0]+4, predmodel.icelat[0]-3))
+axs[2].annotate(text = 'Dagens nivå', xy=(predmodel.years[0], predmodel.icelat[0]), xytext=(predmodel.years[0]+4, predmodel.icelat[0]-0.2))
 axs[1].set_ylim(70,91)
 #axs[0].set_ylim(420,630)
 axs[0].set_xlabel('År')

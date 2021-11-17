@@ -12,7 +12,7 @@ import climlab
 from climlib import *
 
 #Some data to be used in making the prediction models
-filepaths = ['RCP3PD_MIDYR_CONC.DAT', 'RCP45_MIDYR_CONC.DAT', 'RCP6_MIDYR_CONC.DAT', 'RCP85_MIDYR_CONC.DAT']
+filepaths = ['data/RCP3PD_MIDYR_CONC.DAT', 'data/RCP45_MIDYR_CONC.DAT', 'data/RCP6_MIDYR_CONC.DAT', 'data/RCP85_MIDYR_CONC.DAT']
 labels = ['RCP-2.6', 'RCP-4.5', 'RCP-6.0', 'RCP-8.5']
 param = {'D':0.55, 'A':210, 'B':2, 'a0':0.3, 'a2':0.078, 'ai':0.62, 'Tf':-10.}
 
