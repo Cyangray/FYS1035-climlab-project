@@ -17,11 +17,12 @@ predictions = np.load(name, allow_pickle = True)
 #plot icelats and co2e levels
 cmap = matplotlib.cm.get_cmap('Accent')
 fig2, axs = plt.subplots(nrows = 1, ncols = 3, figsize=(15,7))
+alpha = 1
 plt.suptitle('Co2e-nivåer og iskanten frem til 2150 for fire utslippsmodeller')
 for i,predmodel in enumerate(predictions):
-    axs[0].plot(predmodel.years, predmodel.co2e_array, color = cmap(i/4), linestyle = '-', label = predmodel.label, alpha = 0.7)
-    axs[1].plot(predmodel.co2e_array, predmodel.icelat, color = cmap(i/4), linestyle = '-', label = predmodel.label, alpha = 0.7)
-    axs[2].plot(predmodel.years, predmodel.icelat, color = cmap(i/4), linestyle = '-', label = predmodel.label, alpha = 0.7)
+    axs[0].plot(predmodel.years, predmodel.co2e_array, color = cmap(i/4), linestyle = '-', label = predmodel.label, alpha = alpha)
+    axs[1].plot(predmodel.co2e_array, predmodel.icelat, color = cmap(i/4), linestyle = '-', label = predmodel.label, alpha = alpha)
+    axs[2].plot(predmodel.years, predmodel.icelat, color = cmap(i/4), linestyle = '-', label = predmodel.label, alpha = alpha)
     axs[0].scatter(predmodel.years[-1], predmodel.co2e_array[-1], color = cmap(i/4), linestyle = 'dotted')
     axs[1].scatter(predmodel.co2e_array[-1], predmodel.icelat[-1], color = cmap(i/4), linestyle = 'dotted')
     axs[2].scatter(predmodel.years[-1], predmodel.icelat[-1], color = cmap(i/4), linestyle = 'dotted')
@@ -52,3 +53,19 @@ axs[2].grid()
 
 fig2.tight_layout()
 fig2.show()
+
+
+fig1, axs1 = plt.subplots()
+for i,predmodel in enumerate(predictions):
+    dT = [predmodel.mean_temp[i] - predmodel.mean_temp[0] + 1 for i in range(len(predmodel.mean_temp))] 
+    axs1.plot(predmodel.years, dT, color = cmap(i/4), linestyle = '-', label = predmodel.label, alpha = 1)
+
+plt.title('Global gjennomsnittlig temperaturendring i forhold til 1850-1900')
+axs1.plot([2015,2165], [1.5, 1.5], 'r--', label = '1,5 grader')
+axs1.set_xlim(2015,2100)
+axs1.set_ylim(-0.5,5.5)
+axs1.set_xlabel('År')
+axs1.set_ylabel('Global gjennomsnittlig temperaturendring [°C]')
+axs1.legend()
+axs1.grid()
+fig1.show()
