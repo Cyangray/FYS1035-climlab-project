@@ -49,6 +49,9 @@ for i, year_thresh in enumerate(reversed(year_list)):
     max_co2_i = np.argmax(predmodel.co2e_array)
     axs[0].plot(predmodel.years[max_co2_i], predmodel.co2e_array[max_co2_i], 'ko')
     axs[0].annotate(text = int(year_thresh), xy=(predmodel.years[max_co2_i], predmodel.co2e_array[max_co2_i]), xytext=(predmodel.years[max_co2_i]+4, predmodel.co2e_array[max_co2_i]-3))
+    axs[0].scatter(predmodel.years[-1], predmodel.co2e_array[-1], color = cmap(i/len(year_list)), linestyle = 'dotted')
+    axs[1].scatter(predmodel.co2e_array[-1], predmodel.icelat[-1], color = cmap(i/len(year_list)), linestyle = 'dotted')
+    axs[2].scatter(predmodel.years[-1], predmodel.icelat[-1], color = cmap(i/len(year_list)), linestyle = 'dotted')
 
 #plot decorations
 axs[0].plot(predmodel.years[0], predmodel.co2e_array[0], 'ko')
